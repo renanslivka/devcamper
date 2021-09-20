@@ -1,5 +1,7 @@
+const crypto = require('crypto');
 const ErrorResponse = require('../utils/errorResponse');
-const asyncHandler = require('../middleware/async.js');
+const asyncHandler = require('../middleware/async');
+const sendEmail = require('../utils/sendEmail');
 const User = require('../models/User');
 
 //@desc     Register user
@@ -71,10 +73,10 @@ exports.forgotPassword = asyncHandler(async (req, res, next) => {
 
      await user.save({validateBeforeSave: false});
 
-    /* // Create reset url
+     // Create reset url
      const resetUrl = `${req.protocol}://${req.get(
          'host',
-     )}/api/v1/auth/resetpassword/${resetToken}`;
+     )}/api/v1/auth/reset_password/${resetToken}`;
 
      const message = `You are receiving this email because you (or someone else) has requested the reset of a password. Please make a PUT request to: \n\n ${resetUrl}`;
 
@@ -94,8 +96,7 @@ exports.forgotPassword = asyncHandler(async (req, res, next) => {
          await user.save({validateBeforeSave: false});
 
          return next(new ErrorResponse('Email could not be sent', 500));
-     }*/
-    res.status(200).json({success: true, data: user});
+     }
 });
 
 // Get token from model, create cookie and send response
