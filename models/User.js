@@ -1,4 +1,4 @@
-//const crypto = require('crypto');
+const crypto = require('crypto');
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -69,7 +69,7 @@ UserSchema.methods.getSignedJwtToken = function () {
 UserSchema.methods.matchPassword = async function (enteredPassword) {
     return await bcrypt.compare(enteredPassword, this.password);
 };
-/*
+
 // Generate and hash password token
 UserSchema.methods.getResetPasswordToken = function () {
     // Generate token
@@ -86,7 +86,7 @@ UserSchema.methods.getResetPasswordToken = function () {
 
     return resetToken;
 };
-
+/*
 // Generate email confirm token
 UserSchema.methods.generateEmailConfirmToken = function (next) {
     // email confirmation token
