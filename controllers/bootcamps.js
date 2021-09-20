@@ -150,7 +150,7 @@ exports.bootcampPhotoUpload = asyncHandler(async (req, res, next) => {
         );
     }
 
-    /* // Make sure user is bootcamp owner
+     // Make sure user is bootcamp owner
      if (bootcamp.user.toString() !== req.user.id && req.user.role !== 'admin') {
          return next(
              new ErrorResponse(
@@ -158,7 +158,7 @@ exports.bootcampPhotoUpload = asyncHandler(async (req, res, next) => {
                  401
              )
          );
-     }*/
+     }
 
     if (!req.files) {
         return next(new ErrorResponse(`Please upload a file`, 400));
